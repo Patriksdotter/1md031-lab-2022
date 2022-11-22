@@ -1,112 +1,17 @@
-<!DOCTYPE HTML>
-<html lang="en">
-   <head>
-    <link rel="stylesheet" type="text/css" href="style.css">
-       <title>Page title shown in window title</title>
-       <meta charset="utf-8"/>
-   </head>
-   <body>
-        <header>
-            <div id="headlinediv">
-            <h1 id="headline">That Vegan Place</h1> 
-            <img id="headerimage" src="https://images.hindustantimes.com/img/2021/10/31/1600x900/world_vegan_day_thumb_1635693633164_1635693643392.jpg">
-            </div>
-            
-        <header>
-        <main>
-            <section id="selectburger">
-                <h2>Select burger</h2>
-                <p>Choose your burger!</p>
-                <div class="wrapper">
-                    <div class="box burgerone"> <!--style="display: inline-block;"-->
-                        <h3> The Burger Beyond</h3>
-                        <img src= "https://www.santamariaworld.com/optimized/maximum/globalassets/_recipes/spices/umami_burger_h.jpg" alt="This is The Burger Beyond" title="The Burger Beyond" style="height: 200px;">        
-                        <ul>
-                            <li>750 kCal</li>
-                            <li>Contains <span class="allergies"> gluten</span> </li>
-                            <li>Contains <span class="allergies">soya</span></li>
-                        </ul>
-                    </div>
-                    <div class="box burgertwo">
-                        <h3> Fejkon Burger</h3>        
-                        <img src=  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvIxfr2ZgOadVcjLpEE4xOUMQJa-SikRm7ww&usqp=CAU"
-                        alt="This is the Fejkon Burger" title="Fejkon Burger" style="height: 200px;">
-                        <br>
-                        <ul>
-                            <li>550 kCal</li>
-                            <li>Contains <span class="allergies">soya</span> </li>
-                            <li>Contains <span class="allergies">figs</span></li>
-                        
-                                            
-                        </ul>
-                    </div>
-                    <div class="box burgerthree">
-                            <h3> The Black Death</h3>        
-                            <img src="https://assets.biggreenegg.eu/app/uploads/2021/02/01110809/topimage-shrimp-burger-2021m02-800x533-1.jpg"
-                            alt="This is The Black Death burger" title="The Black Death" style="height: 200px;">
-                            <ul>
-                                <li>700 kCal</li>
-                                <li>Spicy</li>
-                                <li>Contains <span class="allergies">soya</span> </li>
-                            </ul>
-                    </div>
-                </div>
-
-            </section >
-            <section id="customerinformation" >
-                <h3> Customer information</h3>
-                <p>This is where you provide necessary information</p>
-                <h4> Delivery information:</h4>
-                <div id="contact">
-                    <form>
-                        <p>
-                            <label for="firstandlastname">Full Name</label><br>
-                            <input type="text" id="firstandlastname" name="fulln" required="required" placeholder="First and Last name">
-                        </p>
-                        <p>
-                            <label for="email">Email</label><br>
-                            <input type="email" id="email" name="em" required="required" placeholder="E-mail address">
-                        </p>
-                        <p>
-                            <label for="streetname">Street Name</label><br>
-                            <input type="text" id="streetname" name="streetn" required="required" placeholder="Street name">
-                        </p>
-                        <p>
-                            <label for="housenr">House Number</label><br>
-                            <input type="number" id="housenr" name="streetn" required="required" placeholder="House Number">
-                        </p>
-                        <p>
-                            <label for="paymentmethod">Payment method:</label><be>
-                            <select id="paymentmethod" name="rcp">
-                                <option selected="selected">Swish</option>
-                                <option>Debit card/Credit card</option>
-                                <option>Paypal</option>
-                                <option>BitCoin</option>
-                                <option>Cash</option>
-                            </select>
-                         </p>
-                         <p>Gender <br>
-                            <input type="radio" id="female" name="gender" value="female">
-                            <label for="female">Female </label><br>
-                            <input type="radio" id="male" name="gender" value="male">
-                            <label for="male">Male</label><br>
-                            <input type="radio" id="nonbinary" name="gender" value="nonbinary">
-                            <label for="nonbinary">Non-binary</label><br>
-                            <input type="radio" id="undisclosed" name="gender" value="undisclosed">
-                            <label for="undisclosed">Undisclosed</label>
-                         </p>
-                    </form>
-                </div>
-            </section>
-            <button type="submit">
-             <img src="https://www.shareicon.net/data/512x512/2015/10/03/111191_food_512x512.png" alt="Ordering button Icon" title=" Icon" style="width: 15px;">
-                Place order!
-            </button>
-            
-        </main>
-        <hr>
-        <footer>
-            &COPY; 1943 The Vegan Neighbour Inc.
-        </footer>
-   </body>
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+  </head>
+  <body>
+    <noscript>
+      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  </body>
 </html>

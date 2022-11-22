@@ -1,0 +1,27 @@
+[
+  {
+    "name": "The Burger Beyond",
+    "kCal": 750,
+    "gluten": true,
+    "soya": true,
+    "spicy": false,
+    "img": "https://www.santamariaworld.com/optimized/maximum/globalassets/_recipes/spices/umami_burger_h.jpg"
+  },
+  {
+    "name": "Fejkon Burger",
+    "kCal": 550,
+    "gluten": false,
+    "soya": true,
+    "spicy": false,
+    "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvIxfr2ZgOadVcjLpEE4xOUMQJa-SikRm7ww&usqp=CAU"
+  },
+  {
+    "name": "The Black Death",
+    "kCal": 700,
+    "gluten": true,
+    "soya": false,
+    "spicy": true,    
+    "img": "https://assets.biggreenegg.eu/app/uploads/2021/02/01110809/topimage-shrimp-burger-2021m02-800x533-1.jpg"
+  }
+]
+

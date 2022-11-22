@@ -7,7 +7,10 @@
         <button v-on:click="clearQueue">Clear Queue</button>
       </div>
       <div id="dots" v-bind:style="{ background: 'url(' + require('../../public/img/polacks.jpg')+ ')' }">
-          <div v-for="(order, key) in orders" v-bind:style="{ left: order.details.x + 'px', top: order.details.y + 'px'}" v-bind:key="'dots' + key">
+          <div v-for="(order, key) in orders"
+               v-bind:style="{ left: order.details.x + 'px', 
+                              top: order.details.y + 'px'}" 
+                v-bind:key="'dots' + key">
             {{ key }}
           </div>
       </div>
@@ -46,7 +49,7 @@
     padding: 1em;
   }
   #dots {
-    position: relative;
+    position: absolute;
     margin: 0;
     padding: 0;
     background-repeat: no-repeat;
