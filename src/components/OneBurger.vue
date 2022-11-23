@@ -10,9 +10,11 @@
                           <li v-if="burger.soya">Contains <span class="allergies">soya</span></li>
                           <li v-if="burger.spicy"> This one is <span class="allergies">spicy</span> </li>
                       </ul>
-                      <p><br><button v-on:click="addBurger()">+</button>{{ amountOrdered }}<button v-on:click="removeBurger()">-</button> </p>
+                     <p><br><button v-on:click="addBurger()">+</button>{{ amountOrdered }}<button v-on:click="removeBurger()">-</button> </p>
                   </div>
-      
+       
+                      
+                     
      
 
 
@@ -81,6 +83,7 @@
           padding: 0.01em;
           font-size: 120%;
         }
+       
    
       
 

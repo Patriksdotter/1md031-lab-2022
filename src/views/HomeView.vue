@@ -31,43 +31,31 @@
                 <h4> Delivery information:</h4>
                 <div id="contact">
                     <form>
-                    <p>Test: {{housenr}} </p>
+                    
                         <p>
                             <label for="firstandlastname">Full Name {{fulln}}</label><br>
                             <input type="text" id="firstandlastname" v-model="fulln" required="required" placeholder="First and Last name">
                         </p>
                         <p>
                             <label for="email">Email</label><br>
-                            <input type="email" id="email" v-model="em" required="required" placeholder="E-mail address">
+                            <input type="email" id="email" v-model="email" required="required" placeholder="E-mail address">
                         </p>
 
-                         <section>
-                            <div id="mapdiv">
-                                    <div id="map" v-on:click="addOrder">
-                                      click here
-                                        <div id="dots" v-bind:style="{}">
-                                          <div v-bind:style="{ left: location.x + 'px', 
-                                                              top: location.y + 'px'}" >
-                                          {{ target}}
-                                          </div>
-                                        </div>
+                         <p> Click on the map to determine the delivery address </p>
+                          <div id="mapdiv" >
+                                  <div id="map" v-on:click="setLocation" >
+                                   <div id="dots" v-bind:style="{}">
+                                   <div v-bind:style="{ left: location.x + 'px', 
+                                                            top: location.y + 'px'}" v-bind:key="'dots' + key" >
+                                        T
+                                      </div>  
                                       </div>
                                     </div>
-                          </section>
-                        <p>
-                            <label for="streetname">Street Name</label><br>
-                            <input type="text" id="streetname" v-model="streetn" required="required" placeholder="Street name">
-                        </p>
-                        <p>
-                            <label for="housenr">House Number</label><br>
-                            <input type="number" id="housenr" v-model="housenr" required="required" placeholder="House Number">
-                        </p>
-                        
-                          
+                                  </div> 
                         <p>
                             <label for="paymentmethod">Payment method:</label>
                             <select id="paymentmethod" v-model="paymentmethod">
-                                <option selected="selected">Swish</option>
+                                <option>Swish</option>
                                 <option>Debit card/Credit card</option>
                                 <option>Paypal</option>
                                 <option>BitCoin</option>
@@ -84,16 +72,19 @@
                             <input type="radio" id="undisclosed" v-model="gender" value="undisclosed">
                             <label for="undisclosed">Undisclosed</label>
                          </p>
-                         {{gender}}
+                         
                     </form>
                 </div>
             </section>
+            
+                                             
+                          
              
-            <button v-on:click="sendOrder()" type="submit">
+            <button v-on:click="addOrder()" type="submit">
              <img src="https://www.shareicon.net/data/512x512/2015/10/03/111191_food_512x512.png" alt="Ordering button Icon" title=" Icon" style="width: 15px;">
                 Place order!
             </button>
-            
+           
         </main>
         <hr>
         <footer>
@@ -109,7 +100,7 @@ import Burger from '../components/OneBurger.vue'
 import menu from '../assets/menu.json'
 import io from 'socket.io-client'
 let theMenu = menu;
-const hej = "hej"
+//const hej = "hej"
 console.log(theMenu);
 
 const socket = io();
@@ -142,7 +133,12 @@ export default {
       location: { x: 0,
                   y: 0
                 },
-      target: 'T'
+      name: '',
+      customerEmail: '',
+      payment: '',
+      customerGender: '',
+      paymentmethod: 'Swish',
+      
     }
   },
   methods: {
@@ -154,34 +150,33 @@ export default {
                        y: event.clientY
                       }
     },
-    addOrder: function (event) {
-      var offset = {x: event.currentTarget.getBoundingClientRect().left,
+    
+    setLocation: function(event){
+     var offset = {x: event.currentTarget.getBoundingClientRect().left,
                     y: event.currentTarget.getBoundingClientRect().top};
-      socket.emit("addOrder", { orderId: this.getOrderNumber(),
-                                details: { x: event.clientX - 10 - offset.x,
-                                           y: event.clientY - 10 - offset.y },
-                                orderItems: ["Beans", "Curry"]
-                              }
-                 );
-      this.location.x = event.clientX - 10 - offset.x;
-      this.location.y= event.clientY - 10 - offset.y;
-                      
-                      console.log(this.location.x);
-                      console.log(event.clientX);
-                      console.log(this.location.x);
-                      console.log(event.clientY)
+      this.location.x = event.offsetX- 30 ;
+      this.location.y= event.offsetY - 30;  
     },
     addToOrder: function (event) {
       this.orderedBurgers[event.name] = event.amount;
       console.log(orderedBurgers);
     },
-    sendOrder: function(){
-      console.log(hej);
-      console.log(this.gender, this.fulln);
-      console.log(this.fulln);
-      console.log(this.em);
-      console.log(this.streetn);
-      console.log(this.housenr);
+    addOrder: function(event){
+      socket.emit("addOrder", { orderId: this.getOrderNumber(),
+                                details: { x: this.location.x,
+                                          y: this.location.y },
+                                orderItems: this.orderedBurgers,
+                                customerInfo: {name: this.fulln,
+                                               customerEmail: this.email,
+                                               payment: this.paymentmethod,
+                                               customerGender: this.gender}
+                              }
+                              
+                );
+      
+      console.log(this.location.x);
+     console.log(this.fulln);
+      console.log(this.email);
       console.log(this.paymentmethod);
       console.log(this.gender);
       console.log(this.orderedBurgers);
@@ -257,8 +252,12 @@ body {
   #map {
     width: 1920px;
     height: 1078px;
-    background-image: url("../../public/img/polacks.jpg");
-    
+    background-image: url('../../public/img/polacks.jpg');
+    cursor:crosshair;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    background-repeat: no-repeat;
     
   }
   #mapdiv{
@@ -266,16 +265,9 @@ body {
     width: 97%;
     overflow: scroll;
   }
-   #dots {
-    position: absolute;
-    margin: 0;
-    padding: 0;
-    background-repeat: no-repeat;
-    
-    cursor: crosshair;
-  }
   
-  #dots div {
+ 
+  #dots div{
     position: absolute;
     background: black;
     color: white;
@@ -284,4 +276,5 @@ body {
     height:20px;
     text-align: center;
   }
+
 </style>
